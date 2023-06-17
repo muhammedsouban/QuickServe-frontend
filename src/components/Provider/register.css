@@ -1,0 +1,20 @@
+.Register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: scroll;
+   background-color: #E8F5FF;
+    height: 85vh;
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+  }
+  
+  .Register-center {
+    width: 100%;
+    max-width: 800px;
+    padding: 2rem;
+   height: 100%;
+  }
+  
+ 
+  

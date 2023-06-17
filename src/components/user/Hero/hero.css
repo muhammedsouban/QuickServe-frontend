@@ -1,0 +1,67 @@
+.hero {
+    position: relative;
+    height: 500px;
+}
+
+.hero img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translate(-30%, -50%);
+    color: rgb(0, 0, 0);
+    text-align: start;
+}
+
+.hero-text h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+    width: 70%;
+}
+
+.hero-text button {
+    display: inline-block;
+    padding: 7px 40px;
+    background-color: #000000;
+    color: white;
+    font-size: 20px;
+    text-transform: uppercase;
+    border-radius: 13px;
+    transition: background-color 0.3s ease;
+}
+
+.hero-text a:hover {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Media Queries for Responsive Font Sizes */
+
+@media (max-width: 915px) {
+    .hero-text h1 {
+        font-size: 36px;
+        width: 80%;
+
+
+    }
+
+    .hero-text input {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-text h1 {
+        font-size: 24px;
+        width: 100%;
+    }
+
+    .hero-text input {
+        font-size: 14px;
+    }
+}

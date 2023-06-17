@@ -1,0 +1,20 @@
+.navbar {
+  display: flex;
+  position: sticky;
+  top: 0;
+  justify-content: space-between;
+  background: linear-gradient(45deg, #000235, #020073);
+}
+
+.sidebar {
+  background: linear-gradient(180deg, #000235, #020073);
+  /* width: 300px; */
+
+}
+
+/* @media (max-width:400px){
+  .sidebar {
+    width: 50px;
+  
+  }
+} */

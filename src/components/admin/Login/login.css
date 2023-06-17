@@ -1,0 +1,94 @@
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Poppins:wght@400;500;600&display=swap');
+  
+  
+  .center1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+   background-color: #fff;;
+    border-radius: 10px;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.05);
+  }
+  
+  .center1 h1 {
+    text-align: center;
+    padding: 20px 0;
+    font-weight: 500;
+    color: #000240;
+  }
+  
+  .center1 form {
+    padding: 0 40px;
+    box-sizing: border-box;
+  }
+  
+  form .txt_field1 {
+    position: relative;
+    background-color: #E8F5FF;
+    border-radius: 10px;
+    height: 50px;
+    margin: 25px 0;
+  }
+  
+  .txt_field1 input {
+    width: 100%;
+    padding: 5px 5px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+  }
+  .txt_field1 textarea {
+    width: 100%;
+    padding: 5px 5px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+  }
+  
+  .txt_field1 label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    color: #b5b6cb;
+    transform: translateY(-50%);
+    font-size: 16px;
+    pointer-events: none;
+    transition: .5s;
+  }
+  
+  .txt_field1 span::before {
+    content: '';
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: #2691d9;
+    transition: .5s;
+  }
+  
+  .txt_field1 input:focus~label,
+  .txt_field1 input:valid~label {
+    top: -10px;
+    color:  rgb(30 58 138);
+  }
+  .txt_field1 textarea:focus~label,
+  .txt_field1 textarea:valid~label {
+    top: -10px;
+    color:  rgb(30 58 138);
+  }
+  .txt_field1 input:focus~span::before,
+  .txt_field1 input:valid~span::before {
+    width: 100%;
+  }
+  .txt_field1 textarea:focus~span::before,
+  .txt_field1 textarea:valid~span::before {
+    width: 100%;
+  }
+
+  

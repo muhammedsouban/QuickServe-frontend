@@ -7,7 +7,7 @@ function Advt({ data }) {
          <div className='w-[64%] h-[150px] flex items-center'>
       <Link to={'/services'}>
         <img
-          src={`${BASE_URL}/public/images/${data.image}`}
+          src={`${BASE_URL}/public/images/${data?.image}`}
           className='object-contain w-full h-full'
           alt='advt'
         />

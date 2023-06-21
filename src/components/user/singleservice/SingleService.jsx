@@ -6,28 +6,33 @@ import { toast } from "react-hot-toast";
 import BookNow from "../BookNow/BookNow";
 import { StarIcon } from "@heroicons/react/solid";
 import BASE_URL from "../../../config/config";
+import { useSelector } from "react-redux";
 
 const SingleService = () => {
   const [service, setService] = useState()
   const [showModal, setShowModal] = useState(false)
-
+  
   const { serviceId } = useParams();
   const headers = { Authorization: `Bearer ${localStorage.getItem('userToken')}` };
 
-  const handleAddToCart = (serviceId, image, name, description, price) => {
+  const handleAddToCart = (serviceId) => {
     if (headers.Authorization !== 'Bearer null') {
       addToCart(serviceId, headers).then((res) => {
         if (res.data) {
-          toast(res.data.message)
+          toast.success(res.data.message)
         }
       })
     } else {
-      toast('please Login')
+      toast.error('please Login')
     }
   };
 
   const handleModel = () => {
-    setShowModal(!showModal)
+    if(headers.Authorization !== 'Bearer null'){
+      setShowModal(!showModal)
+    }else{
+      toast.error('Please Login to Book a service')
+    }
   }
 
   useEffect(() => {
@@ -37,46 +42,49 @@ const SingleService = () => {
 
   }, []);
   return (
-    <section className="">
-      <div className="flex justify-center px-5 mt-5 mx-auto">
-        <div className="lg:w-4/5  justify-center items-center flex ">
-          <div className="w-2/3  bg-white ">
-            {service && <div className="grid lg:grid-cols-2 sm:grid-cols-1">
-              <div className="w-full p-4">
-                <img alt="ecommerce" className=" h-72 object-cover object-center rounded border border-gray-200" src={`${BASE_URL}/public/images/${service.image}`} />
+    <>
+    <div className="flex justify-center">
+    <div className="lg:w-4/5">
+      <div className="flex justify-center px-5 mt-5 mx-auto ">
+        <div className=" justify-center items-center flex bg-white">
+          {service && <div className=" mx-4 my-4 rounded-lg overflow-hidden max-w-4xl">
+            <div className="md:flex">
+              <div className="md:w-1/2 flex items-center justify-center">
+                <img src={`${BASE_URL}/public/images/${service.image}`} alt="" className="object-contain rounded-lg" />
               </div>
-              <div className=" w-full lg:py-4 mt-6 lg:p-3 lg:mt-0 ">
-                <h2 className="text-sm title-font text-gray-500 tracking-widest">{service.category}</h2>
-                <h1 className="text-blue-900 text-4xl title-font font-medium mb-1">{service.servicename}</h1>
-                <p className="leading-relaxed">{service.description}</p>
-                <div className="flex mb-4 mt-5">
-                  <span className="flex items-center">
-                  {/* <StarIcon className="w-5 h-5 text-yellow-400" />
-
-                    <span className="text-gray-600 ml-3">4.5</span> */}
-                  </span>
-
-                </div>
-                <div className="flex mt-6 items-center border-gray-200">
-
-                  <span className="title-font font-medium text-3xl text-gray-900">{service.price}</span>
-                </div>
+              <div className="md:w-1/2 flex flex-col justify-center p-4 md:p-8">
+                <h3 className="title uppercase font-semibold text-gray-700 text-xs tracking-widest">
+                {service.category}
+                </h3>
+                <h1 className="heading font-bold text-3xl text-blue-900">
+                {service.servicename}
+                </h1>
+                <p className="description text-base text-gray-700">
+                {service.description}
+                </p>
+                  <p className=" font-semibold pt-4 text-3xl ">
+                  <span className="font-normal">₹ </span>{service.price}
+                  </p>
                 <p className="mb-6">*Extra Charges Applicable for Spare Parts</p>
-                <div className="flex ">
-                  <button onClick={handleModel} className=" text-blue-900 mr-8 border-blue-900 border-2 py-3 px-12 focus:outline-none hover:border-blue-600 hover:text-white hover:bg-blue-600 rounded-lg">Book Now</button>
-                  <button className=" text-white bg-blue-900 border-0 py-3 px-12 focus:outline-none hover:bg-blue-600 rounded-lg" onClick={() => handleAddToCart(service._id, service.image, service.servicename, service.description, service.price)}>Add to cart</button>
+
+                <div className='flex justify-between gap-3'>
+                  <button onClick={handleModel} className="px-4 w-full border h-12 border-blue-900 hover:border-none hover:text-white rounded-md text-blue-900 items-center gap-2 hover:bg-blue-700">
+                   Book Now
+                  </button>
+                  <button onClick={() => handleAddToCart(service._id)} className="px-4 border w-full h-12 bg-blue-900  rounded-md text-white  items-center gap-2 hover:bg-blue-700">
+                    Add to Cart
+                  </button>
                 </div>
               </div>
-            </div>}
-          </div>
-
+            </div>
+          </div>}
         </div>
       </div>
-     {service && <Ratings serviceId={service._id}/>}
+      {service && <Ratings serviceId={service._id} />}
       {showModal && <BookNow action={handleModel} serviceData={service} />}
-    </section>
-
-
+    </div>
+    </div>
+    </>
   );
 };
 

@@ -1,9 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { useState } from 'react';
 import '../admin/Login/login.css'
 import { toast } from 'react-hot-toast';
-import BASE_URL from '../../config/config';
+import { Login } from '../../Api/providerAPI';
 
 function ProviderLogin() {
   const [password, setPassword] = useState('');
@@ -14,9 +13,11 @@ function ProviderLogin() {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`${BASE_URL}/provider/login`, { email, password });
-      if (response.data && response.data.email) {
+      const response = await Login(email, password)
+      if (response && response.data.email) {
         localStorage.setItem('ProviderToken', response.data.token);
+        toast.success(response.data.message);
+
         navigate('/provider/');
       } else {
         toast.error(response.data.message);

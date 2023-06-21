@@ -29,7 +29,7 @@ const Profile = () => {
                                 <div className="flex items-center">
                                     <img
                                         alt="avatar"
-                                        className="w-44 h-44 rounded-md border-2 border-gray-300"
+                                        className=" h-44 rounded-md border-2 border-gray-300"
                                         src={`${BASE_URL}/public/images/${profile.image}`}
                                     />
                                 </div>

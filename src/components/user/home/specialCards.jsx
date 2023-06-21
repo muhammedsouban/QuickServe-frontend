@@ -17,7 +17,7 @@ const MyCard = ({ data }) => {
                 <img
                   src={`${BASE_URL}/public/images/${service.image}`}
                   alt="Service"
-                  className="w-full h-40 object-contain"
+                  className="w-full h-full object-contain"
                 />
               </div></Link>
             ))

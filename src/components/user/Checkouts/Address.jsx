@@ -20,8 +20,7 @@ const Address = ({ onClose, shedule, map, onSelectAddress }) => {
         onClose();
     };
 
-    const selectAddress = address
-        .filter((address) => address.id === selectedAddress)
+    const selectAddress = address.filter((address) => address.id === selectedAddress)
 
     const proceed = () => {
         const selected = address.find((addr) => addr.id === selectedAddress);
@@ -58,7 +57,6 @@ const Address = ({ onClose, shedule, map, onSelectAddress }) => {
             });
             getCity().then((res) => {
                 setCity(res.data)
-                console.log(res.data);
             })
         } catch (error) {
             console.log(error);

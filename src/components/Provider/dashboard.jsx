@@ -8,6 +8,7 @@ function Dashboard() {
   const [data, setData] = useState([]);
   const [mChartData, setMChartData] = useState();
   const [upcomingBookings, setUpcomingBookings] = useState([])
+
   const headers = { Authorization: `Bearer ${localStorage.getItem('ProviderToken')}` };
 
   useEffect(() => {

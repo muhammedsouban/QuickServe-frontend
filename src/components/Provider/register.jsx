@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 import { BiArrowBack, BiCamera } from 'react-icons/bi';
 import './register.css';
 import { getCategories } from '../../Api/AdminAPI';
-import BASE_URL from '../../config/config';
 import { toast } from 'react-hot-toast';
+import { Register } from '../../Api/providerAPI';
 
 const ProviderRegister = ({ onClose }) => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -73,16 +73,15 @@ const ProviderRegister = ({ onClose }) => {
       formData.append('description', provider.description);
       formData.append('password', provider.password);
 
+      await Register(formData).then((res) => {
+        if (res.data.email) {
+          toast.success('Registered Successfully we will get you soon')
+          onClose()
+        } else {
+          toast.error(res.data.message);
+        }
+      })
 
-      const response = await axios.post(`${BASE_URL}/provider/register`, formData);
-
-      if (response.data.email) {
-        toast.success('Registered Successfully we will get you soon')
-        onClose()
-
-      } else {
-        toast.error(response.data.message);
-      }
     } catch (error) {
       console.log(error);
       toast(error.response.data.message);

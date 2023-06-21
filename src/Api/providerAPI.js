@@ -1,5 +1,13 @@
 import { AxiosProvider } from "../axios";
 
+export const Register = async (formData) => {
+    const res = await AxiosProvider.post('/register', formData)
+    return res
+}
+export const Login = async (email, password) => {
+    const res = await AxiosProvider.post('/login', { email, password })
+    return res
+}
 export const bookingRequests = async (headers) => {
     const res = await AxiosProvider.get('/bookingRequests', { headers })
     return res

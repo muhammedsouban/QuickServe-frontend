@@ -5,11 +5,13 @@ import moment from 'moment';
 import ReactStars from 'react-stars';
 import toast from 'react-hot-toast'
 import { useSelector } from 'react-redux';
+import Loader from '../../Loader';
 
 function BookingDetail({ action, data }) {
   const [bookings, setBookings] = useState();
   const [rating, setRatingValue] = useState(0);
   const [feedback, setFeedback] = useState('')
+  const [loading, setLoading] = useState(true);
 
   const headers = { Authorization: `Bearer ${localStorage.getItem('userToken')}` };
   const user = useSelector((state) => state.user.data)
@@ -42,6 +44,7 @@ function BookingDetail({ action, data }) {
   useEffect(() => {
     getBookings(headers).then((res) => {
       if (data) {
+        setLoading(false)
         const filteredBookings = res.data.filter((booking) => booking.BookingID === data);
         const [filteredBooking] = filteredBookings;
         setBookings(filteredBooking);
@@ -53,16 +56,16 @@ function BookingDetail({ action, data }) {
     const email = 'complaints.quickserve@gmail.com';
     const subject = `Complaint for Booking ID: ${BookingID}`;
     const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}`;
-  
+
     window.open(mailtoLink);
   };
-  
+
   const today = moment().format('MMMM Do, YYYY');
   const isToday = bookings?.date === today;
 
   return (
     <>
-      <div>
+      {loading ? <Loader /> : <div>
         <div className='flex justify-center items-center absolute left-0 right-0 bottom-0 top-0'>
           <div className="bg-[#E8F5FF] min-w-[320px] px-8 py-4 rounded-lg shadow-lg">
             <div className="flex justify-between items-center">
@@ -131,7 +134,7 @@ function BookingDetail({ action, data }) {
             )}
           </div>
         </div>
-      </div>
+      </div>}
 
     </>
   );

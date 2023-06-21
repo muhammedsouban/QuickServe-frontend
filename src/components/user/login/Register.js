@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import {userData} from '../../../redux/Slice/userSlice'
 import { userSignup } from '../../../Api/userAPI';
+import { toast } from 'react-hot-toast';
 
 const Signup = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -35,24 +36,26 @@ const Signup = () => {
       
       if (response.data.email) {
         navigate('/Login');
+        toast.success('Registered Successfully');
       } else {
-        alert(response.data.message);
+        toast.error(response.data.message);
       }
     } catch (error) {
       console.log(error);
-      alert(error.response.data.message);
     }
   };
   
   return (
-    <div className="center1">
-      <h1>Signup</h1>
+    <div className='flex justify-center items-center overflow-y-scroll mt-5'>
+        <div className="bg-[#ffffff] px-8 py-2 rounded-lg shadow-lg">
+
+      <h1 className='text-center text-xl font-semibold'>Signup</h1>
       <form onSubmit={handleSubmit}>
         <div className="profile flex justify-center py-4">
           <img src={previewImage} className="profile_img" alt="Profile" />
         </div>
         
-        <div className="txt_field1">
+        <div className="txt_field">
           <input
             type="text"
             title="Please enter a valid username"
@@ -64,7 +67,7 @@ const Signup = () => {
           <label>Username</label>
         </div>
         
-        <div className="txt_field1">
+        <div className="txt_field">
           <input
             type="email"
             title="Please enter a valid email"
@@ -76,7 +79,7 @@ const Signup = () => {
           <label>Email</label>
         </div>
         
-        <div className="txt_field1">
+        <div className="txt_field">
           <input
             type="number"
             id="mobile"
@@ -88,7 +91,7 @@ const Signup = () => {
           <label>Mobile</label>
         </div>
         
-        <div className="txt_field1">
+        <div className="txt_field">
           <input
             type="password"
             id="password"
@@ -100,8 +103,8 @@ const Signup = () => {
           <label>Password</label>
         </div>
         
-        <div className="txt_field1">
-          <input type="file" id="image" name="image" onChange={handleImageChange} required />
+        <div className="txt_field">
+          <input className='mt-2' type="file" id="image" name="image" onChange={handleImageChange} required />
         </div>
         
         <input type="submit" value="Signup" />
@@ -110,6 +113,8 @@ const Signup = () => {
           Already a member? <Link to="/Login">Login</Link>
         </div>
       </form>
+      </div>
+
     </div>
   );
 };

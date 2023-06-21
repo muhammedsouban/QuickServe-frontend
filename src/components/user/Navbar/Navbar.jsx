@@ -12,7 +12,7 @@ import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { getCity } from '../../../Api/AdminAPI';
 
-const Navbar = () => {
+const Navbar = ({ role }) => {
   const [nav, setNav] = useState(false);
   const [locationInput, setLocationInput] = useState('');
   const [showAddress, setShowAddress] = useState(false);
@@ -36,12 +36,12 @@ const Navbar = () => {
             .then((response) => {
               const data = response.data.address;
               const matchedCity = res.data?.find((item) => item.cityName === data.city);
-                if (matchedCity) {
-                  dispatch(Location({ field: "data", value: data }));
-                  dispatch(UpdateCity(data.city));
-                } else {
-                  dispatch(UpdateCity('we will back soon..'));
-                  dispatch(Location({ field: "data", value: ''}));
+              if (matchedCity) {
+                dispatch(Location({ field: "data", value: data }));
+                dispatch(UpdateCity(data.city));
+              } else {
+                dispatch(UpdateCity('we will back soon..'));
+                dispatch(Location({ field: "data", value: '' }));
               }
             })
             .catch((error) => {
@@ -96,7 +96,7 @@ const Navbar = () => {
       toast.success(`selected : ${cityItem.cityName}`)
     } else {
       dispatch(UpdateCity('Sorry we are not here'))
-      dispatch(Location({field:'data',value:''}))
+      dispatch(Location({ field: 'data', value: '' }))
       toast.error('Sorry, we are not in your city');
       setShowSearch(false);
 
@@ -238,23 +238,25 @@ const Navbar = () => {
       {nav && <div className="bg-black/80 fixed w-full h-screen z-10 top-0 left-0"></div>}
 
       <div className="sm:flex items-center ms-5 p-1 text-[18px]">
-        <NavLink to="/provider/register">
+        {role ? <NavLink to="/">
+          <p className="p-2 ">Book a service</p>
+        </NavLink> : <NavLink to="/provider/register">
           <p className="p-2 hidden sm:flex">Register as profession</p>
-        </NavLink>
+        </NavLink>}
         {headers && headers.Authorization !== 'Bearer null' ? (
           <NavLink onClick={logout} className="flex items-center">
             <MdPerson size={25} className="ms-5 hidden sm:flex" />
             <p className="p-2 hidden sm:flex">Logout</p>
           </NavLink>
         ) : (
-          <NavLink to="/login" className="flex items-center">
+          <NavLink to="/login" onClick={toggleNav} className="flex items-center">
             <MdPerson size={25} className="ms-5 hidden sm:flex" />
             <p className="p-2 hidden sm:flex">Login</p>
           </NavLink>
         )}
-        <div onClick={toggleNav} className="cursor-pointer ms-5">
+        {role ? '' : <div onClick={toggleNav} className="cursor-pointer ms-5">
           <AiOutlineMenu size={30} />
-        </div>
+        </div>}
       </div>
       <div
         className={`sidebar fixed top-0 ${nav ? 'right-0' : 'left-[-100%]'} w-[300px] h-screen text-white bg-blue-900 z-10 duration-300`}
@@ -351,16 +353,16 @@ const Navbar = () => {
               </li>
             </NavLink>
             {headers && headers.Authorization !== 'Bearer null' ? (
-          <NavLink onClick={logout} className="flex items-center text-xl py-4 lg:hidden ">
-            <BiLogOut size={25} className="mr-4 " />
-           Logout
-          </NavLink>
-        ) : (
-          <NavLink to="/login" className="lg:hidden flex items-center text-xl py-4">
-            <MdLogin size={25} className="mr-4 " />
-            Login
-          </NavLink>
-        )}
+              <NavLink onClick={logout} className="flex items-center text-xl py-4 lg:hidden ">
+                <BiLogOut size={25} className="mr-4 " />
+                Logout
+              </NavLink>
+            ) : (
+              <NavLink to="/login" className="lg:hidden flex items-center text-xl py-4">
+                <MdLogin size={25} className="mr-4 " />
+                Login
+              </NavLink>
+            )}
             <li onClick={(() => handleNavLink('/profile'))} className="text-xl py-4 flex cursor-pointer">
               <MdPerson size={25} className="mr-4" /> Profile
             </li>

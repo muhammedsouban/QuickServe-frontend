@@ -57,7 +57,7 @@ const CategorySlider = () => {
                 <img
                   src={`${BASE_URL}/public/images/${category.image}`}
                   alt={category.categoryName}
-                  className="w-40 h-40 object-contain rounded-full"
+                  className="max-w-40 max-h-40 object-cover rounded-full"
                 />
                 <p className="mt-2 text-center">{category.categoryName}</p>
               </div>

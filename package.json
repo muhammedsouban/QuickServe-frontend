@@ -30,6 +30,7 @@
     "react-hot-toast": "^2.4.1",
     "react-icons": "^4.8.0",
     "react-leaflet": "^4.2.1",
+    "react-loader-spinner": "^5.3.4",
     "react-places-autocomplete": "^7.3.0",
     "react-razorpay": "^1.2.0",
     "react-redux": "^8.0.5",

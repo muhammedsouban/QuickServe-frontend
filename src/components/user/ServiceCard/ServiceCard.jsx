@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import BookNow from '../BookNow/BookNow';
 import BASE_URL from '../../../config/config';
+import { useSelector } from 'react-redux';
 
 const ServiceCard = () => {
 
@@ -23,19 +24,23 @@ const ServiceCard = () => {
     if (headers.Authorization !== 'Bearer null') {
       addToCart(serviceId, headers).then((res) => {
         if (res.data) {
-          toast(res.data.message)
+          toast.success(res.data.message)
         }
       })
     } else {
-      toast('please Login')
+      toast.error('please Login')
     }
   };
 
   const handleModel = (serviceId) => {
-    setShowModal(!showModal)
-    const filteredServices = service.filter((service) => service._id === serviceId)
-    const [filteredService] = filteredServices;
-    setServiceData(filteredService);
+    if (headers.Authorization !== 'Bearer null') {
+      setShowModal(!showModal)
+      const filteredServices = service.filter((service) => service._id === serviceId)
+      const [filteredService] = filteredServices;
+      setServiceData(filteredService);
+    }else{
+      toast.error('Please login to book a service')
+    }
   }
 
   useEffect(() => {

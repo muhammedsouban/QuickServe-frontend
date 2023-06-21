@@ -1,2 +1,2 @@
-const BASE_URL = 'https://13.230.78.180';
+const BASE_URL = 'https://www.quick.gadtech.shop';
 export default BASE_URL;

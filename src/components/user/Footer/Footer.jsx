@@ -25,22 +25,22 @@ const Footer = () => {
           <span>Get connected with us on social networks:</span>
         </div>
         <div className="flex justify-center">
-          <a href="/" className="mr-6 text-neutral-600 dark:text-neutral-200">
+          <a href="/" className="mr-6 text-neutral-200">
             <FaFacebook className="h-4 w-4" />
           </a>
-          <a href="/" className="mr-6 text-neutral-600 dark:text-neutral-200">
+          <a href="/" className="mr-6 text-neutral-200">
             <FaTwitter className="h-4 w-4" />
           </a>
-          <a href="/" className="mr-6 text-neutral-600 dark:text-neutral-200">
+          <a href="/" className="mr-6 text-neutral-200">
             <FaInstagram className="h-5 w-5" />
           </a>
-          <a href="/" className="mr-6 text-neutral-600 dark:text-neutral-200">
+          <a href="/" className="mr-6 text-neutral-200">
             <FaLinkedin className="h-4 w-4" />
           </a>
-          <a href="/" className="mr-6 text-neutral-600 dark:text-neutral-200">
+          <a href="/" className="mr-6 text-neutral-200">
             <FaGithub className="h-4 w-4" />
           </a>
-          <a href="/" className="text-neutral-600 dark:text-neutral-200">
+          <a href="/" className="text-neutral-200">
             <IoLogoYoutube className="h-4 w-4" />
           </a>
         </div>
@@ -63,12 +63,12 @@ const Footer = () => {
 
               <h6 className="mb-4 flex justify-center font-semibold uppercase md:justify-start">Categories</h6>
               {categories.length > 0 && categories.map((items) => (
-                <Link to={`/services/${items.categoryName}`}>
-                  <p className="mb-4">
-                    <p className="text-neutral-600 dark:text-neutral-200">
+                <Link key={items._id} to={`/services/${items.categoryName}`}>
+                  <div  className="mb-4">
+                    <p className="text-neutral-200 text-start">
                       {items.categoryName}
                     </p>
-                  </p>
+                  </div>
                 </Link>
               ))}
 
@@ -77,14 +77,14 @@ const Footer = () => {
           <div className="md:justify-center flex ">
 
             <div className="">
-              <h6 className="mb-4 flex justify-center font-semibold uppercase md:justify-start">Cities</h6>
+              <h6 className="mb-4 flex  font-semibold uppercase md:justify-start">Cities</h6>
               {cities && cities.length > 0 ? (
                 cities.map((item) => (
-                  <p className="mb-4" key={item._id}>
-                    <p className="text-neutral-600 dark:text-neutral-200">
+                  <div className="mb-4" key={item._id}>
+                    <p className="text-neutral-200 text-start">
                       {item.cityName}
                     </p>
-                  </p>
+                  </div>
                 ))
               ) : (
                 <p>No cities found.</p>
@@ -99,21 +99,21 @@ const Footer = () => {
           <div className="md:justify-center flex ">
             <div>
               <h6 className="mb-4 flex justify-start font-semibold uppercase ">Contact</h6>
-              <p className="mb-4">
+              <div className="mb-4">
                 <a href="/" className="text-neutral-600 flex items-center dark:text-neutral-200">
                   <HiOutlineMail className="mr-2 h-4 w-4" />
                   <p>info@QuickServe.com</p>
                 </a>
-              </p>
+              </div>
               <p>
-                <span className="text-neutral-600 dark:text-neutral-200">Bangalore, Karnataka, India</span>
+                <span className="text-neutral-200">Bangalore, Karnataka, India</span>
               </p>
             </div>
           </div>
         </div>
       </div>
       <div className="bg-blue-950 py-4">
-        <div className="text-center text-sm text-neutral-600 dark:text-neutral-200">
+        <div className="text-center text-sm text-neutral-200">
           © 2023 QuickServe. All rights reserved.
         </div>
       </div>

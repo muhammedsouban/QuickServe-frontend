@@ -249,7 +249,7 @@ const Navbar = ({ role }) => {
             <p className="p-2 hidden sm:flex">Logout</p>
           </NavLink>
         ) : (
-          <NavLink to="/login" onClick={toggleNav} className="flex items-center">
+          <NavLink to="/login" className="flex items-center">
             <MdPerson size={25} className="ms-5 hidden sm:flex" />
             <p className="p-2 hidden sm:flex">Login</p>
           </NavLink>
@@ -358,7 +358,7 @@ const Navbar = ({ role }) => {
                 Logout
               </NavLink>
             ) : (
-              <NavLink to="/login" className="lg:hidden flex items-center text-xl py-4">
+              <NavLink to="/login" onClick={toggleNav} className="lg:hidden flex items-center text-xl py-4">
                 <MdLogin size={25} className="mr-4 " />
                 Login
               </NavLink>

@@ -3,17 +3,21 @@ import StatCard from './StatCard';
 import MainChart from './chart';
 import ColumnChart from './columnChart';
 import { AdminDashboard } from '../../../Api/AdminAPI';
+import Loader from '../../Loader';
 
 const Dashboard = () => {
   const [data, setData] = useState([]);
   const [mChartData, setMChartData] = useState();
   const [CChartData, setCChartData] = useState();
+  const [loading, setLoading] = useState(true);
 
 
   const headers = { Authorization: `Bearer ${localStorage.getItem('token')}` };
 
   useEffect(() => {
     AdminDashboard(headers).then((res) => {
+      setLoading(false)
+
       const { users, providers,totalBookings,earnings } = res.data;
       const namedData = [
         { name: 'Earnings', count: earnings }, 
@@ -30,7 +34,8 @@ const Dashboard = () => {
   return (
     <>
       <div className='flex justify-center mt-10'>
-        <div>
+       {loading ?
+        <Loader />: <div>
           <div>
             <h1 className='text-2xl font-semibold'>Dashboard</h1>
             <StatCard value={data} />
@@ -39,7 +44,7 @@ const Dashboard = () => {
             <MainChart value={mChartData}/>
             <ColumnChart value={CChartData} />
           </div>
-        </div>
+        </div>}
       </div>
     </>
   );

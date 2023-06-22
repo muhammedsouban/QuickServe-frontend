@@ -119,9 +119,13 @@ function Chat({ action }) {
                             } mb-4`}
                         >
                           {message.sender === user ? (
-                            <FaUserCircle size={32} color='blue'/>
+                            <FaUserCircle size={32} color='#0D47A1'/>
                           ) : (
-                            <BiSupport size={32} className='border border-blue-900 rounded-full'/>
+                            <img
+                            src="https://source.unsplash.com/vpOeXr5wmR4/600x600"
+                            className="object-cover h-8 w-8 rounded-full"
+                            alt=""
+                          />
                           )}
 
                           <div

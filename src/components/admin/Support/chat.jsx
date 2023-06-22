@@ -76,11 +76,15 @@ const AdminChat = () => {
                     className={`flex ${msg.sender === selectedUser.userId ? 'flex-row ' : 'flex-row-reverse'
                       } items-center mb-2 ml-2`}
                   >
-                    <img
-                      src="https://source.unsplash.com/vpOeXr5wmR4/600x600"
-                      alt=""
-                      className="h-10 w-10 rounded-full mr-2"
-                    />
+                    {msg.sender === selectedUser.userId ? (
+                            <FaUserCircle size={32} color='#0D47A1'/>
+                          ) : (
+                            <img
+                            src="https://source.unsplash.com/vpOeXr5wmR4/600x600"
+                            className="object-cover h-8 w-8 rounded-full"
+                            alt=""
+                          />
+                          )}
                     <div
                       className={`${msg.sender === selectedUser.userId ? 'bg-gray-200' : 'bg-blue-500 text-white mr-2'
                         } py-2 px-4 rounded-lg max-w-3/4`}

@@ -1,4 +1,3 @@
-// React code (AdminChat.js)
 
 import React, { useEffect, useState } from 'react';
 import io from 'socket.io-client';
@@ -6,6 +5,7 @@ import Sidebar from './chatSidebar';
 import { IoSendSharp } from 'react-icons/io5';
 import { getChat, getConversation, sendMessage } from '../../../Api/AdminAPI';
 import BASE_URL from '../../../config/config';
+import { FaUserCircle } from 'react-icons/fa';
 
 const socket = io(BASE_URL);
 
@@ -85,7 +85,7 @@ const AdminChat = () => {
                             alt=""
                           />
                           )}
-                          
+
                     <div
                       className={`${msg.sender === selectedUser.userId ? 'bg-gray-200' : 'bg-blue-500 text-white mr-2'
                         } py-2 px-4 rounded-lg max-w-3/4`}

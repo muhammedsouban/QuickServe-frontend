@@ -85,6 +85,7 @@ const AdminChat = () => {
                             alt=""
                           />
                           )}
+                          
                     <div
                       className={`${msg.sender === selectedUser.userId ? 'bg-gray-200' : 'bg-blue-500 text-white mr-2'
                         } py-2 px-4 rounded-lg max-w-3/4`}

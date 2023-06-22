@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { BiArrowBack } from 'react-icons/bi';
+import { BiArrowBack, BiSupport } from 'react-icons/bi';
 import { IoSendSharp } from 'react-icons/io5';
 import { useSelector } from 'react-redux';
 import io from 'socket.io-client';
 import { getChat, sendMessage, startConversation } from '../../../Api/userAPI';
 import BASE_URL from '../../../config/config';
+import { FaUserCircle } from 'react-icons/fa';
 
 function Chat({ action }) {
   const [message, setMessage] = useState('');
@@ -118,17 +119,9 @@ function Chat({ action }) {
                             } mb-4`}
                         >
                           {message.sender === user ? (
-                            <img
-                              src="https://source.unsplash.com/vpOeXr5wmR4/600x600"
-                              className="object-cover h-8 w-8 rounded-full"
-                              alt=""
-                            />
+                            <FaUserCircle size={32} color='blue'/>
                           ) : (
-                            <img
-                              src="https://source.unsplash.com/vpOeXr5wmR4/600x600"
-                              className="object-cover h-8 w-8 rounded-full"
-                              alt=""
-                            />
+                            <BiSupport size={32} className='border border-blue-900 rounded-full'/>
                           )}
 
                           <div

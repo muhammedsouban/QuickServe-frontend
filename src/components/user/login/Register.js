@@ -62,7 +62,7 @@ const Signup = () => {
               name="username"
               value={signup.username}
               onChange={onChange}
-              pattern="^(?!\\s*$).+"
+              pattern="^(?!\\s)[^\s]+$"
               required
             />
             <label>Username</label>
@@ -75,6 +75,7 @@ const Signup = () => {
               name="email"
               value={signup.email}
               onChange={onChange}
+              pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
               required
             />
             <label>Email</label>
@@ -82,7 +83,7 @@ const Signup = () => {
 
           <div className="txt_field">
             <input
-              type="number"
+              type="text"
               id="mobile"
               name="mobile"
               value={signup.mobile}

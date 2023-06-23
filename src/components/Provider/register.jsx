@@ -13,7 +13,7 @@ const ProviderRegister = ({ onClose }) => {
 
   const [Category, setCategory] = useState([])
   const [city, setCity] = useState([])
-  
+
   const handleImageChange = (e) => {
     const image = e.target.files[0];
     setSelectedImage(image);
@@ -117,7 +117,8 @@ const ProviderRegister = ({ onClose }) => {
 
                 className="block py-2.5 px-2 w-full text-sm text-gray-900 bg-white rounded border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
-                pattern="^(?!\\s*$).+"
+                pattern="^(?!\\s)[^\s]+$"
+                title='Please enter a valid username'
                 required
               />
               <label
@@ -127,14 +128,16 @@ const ProviderRegister = ({ onClose }) => {
               </label>
             </div>
             <div className="relative z-0 w-full mb-5 group">
-              <input onChange={onChange} value={provider.email} type="email" name="email" className="block py-2.5 px-2 w-full text-sm text-gray-900 bg-white rounded border-gray-300 appearance-none    focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+              <input onChange={onChange} value={provider.email} type="email" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+                title="Please enter a valid email address" className="block py-2.5 px-2 w-full text-sm text-gray-900 bg-white rounded border-gray-300 appearance-none    focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
               <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-85 top-3 z-10 ms-2 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-85 peer-focus:-translate-y-6">Email</label>
             </div>
           </div>
           <div className="grid md:grid-cols-2 md:gap-6">
             <div className="relative z-0 w-full mb-5 group">
               <input onChange={onChange} value={provider.phone} pattern="[0-9]{10}"
-                type="number" name="phone" className="block py-2.5 px-2 w-full text-sm text-gray-900 bg-white rounded border-gray-300 appearance-none    focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                title="Please enter a 10-digit number"
+                type="text" name="phone" className="block py-2.5 px-2 w-full text-sm text-gray-900 bg-white rounded border-gray-300 appearance-none    focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
               <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-85 top-3 z-10 ms-2 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-85 peer-focus:-translate-y-6">Mobile No.</label>
             </div>
             <div className="relative z-0 w-full mb-5 group">
